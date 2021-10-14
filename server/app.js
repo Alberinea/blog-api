@@ -2,12 +2,12 @@ import express from 'express';
 import dotenv from 'dotenv';
 import logger from 'morgan';
 import mongoose from 'mongoose';
-import cors from 'cors'
-import indexAPI from './api/index.js';
-import loginAPI from './api/login.js';
+import cors from 'cors';
+import blogAPI from './api/v1/blog.js';
+import loginAPI from './api/v1/login.js';
 
 const app = express();
-const port = 5000;
+const port = process.env.PORT || 5000;
 
 dotenv.config();
 
@@ -24,12 +24,14 @@ mongoose
     console.log(err);
   });
 
-app.use(cors({
-
-}))
+app.use(cors({}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(logger('dev'));
-app.use(indexAPI, loginAPI);
+app.use('api', blogAPI, loginAPI);
+
+app.use((req, res) => {
+  res.status(404).send('Not found');
+});
 
 app.listen(port, console.log(`listening on port ${port}`));
