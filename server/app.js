@@ -3,8 +3,12 @@ import dotenv from 'dotenv';
 import logger from 'morgan';
 import mongoose from 'mongoose';
 import cors from 'cors';
-import blogAPI from './api/v1/blog.js';
-import loginAPI from './api/v1/login.js';
+import cookieParser from 'cookie-parser';
+import blogAPI from './api/blog.js';
+import loginAPI from './api/login.js';
+import refreshAPI from './api/refresh.js';
+import logoutAPI from './api/logout.js';
+import postAPI from './api/post.js';
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -24,11 +28,18 @@ mongoose
     console.log(err);
   });
 
-app.use(cors({}));
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(
+  cors({
+    origin: ['http://localhost:3000'],
+    credentials: true,
+  })
+);
+app.use(cookieParser());
+app.use(express.json({ limit: '2mb' }));
+app.use(express.urlencoded({ limit: '2mb', extended: true }));
 app.use(logger('dev'));
-app.use('api', blogAPI, loginAPI);
+
+app.use('/api', blogAPI, loginAPI, refreshAPI, logoutAPI, postAPI);
 
 app.use((req, res) => {
   res.status(404).send('Not found');

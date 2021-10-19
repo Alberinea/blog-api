@@ -1,5 +1,5 @@
 import express from 'express';
-import { loginPostController } from '../../controllers/loginController.js';
+import { loginPostController } from '../controllers/loginController.js';
 
 const loginAPI = express.Router();
 

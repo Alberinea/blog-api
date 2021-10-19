@@ -37,20 +37,19 @@ body {
   line-height: 1.5;
 }
 
+html, body, #root, .App {
+  height: 100%;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+}
+
 /* Remove list styles on ul, ol elements with a class attribute */
 ul,
 ol {
   list-style: none;
-}
-
-a[class] {
-  color: black;
-  opacity: 0.7;
-}
-
-a[class]:hover {
-  color: black;
-  opacity: 1;
 }
 
 /* A elements that don't have a class get default styles */
@@ -87,41 +86,24 @@ select {
   }
 }
 
-/* @media (min-width: 1520px) {
-  .container {
-    max-width: 1400px !important;
-  }
-}
-
-@media (min-width: 1720px) {
-  .container {
-    max-width: 1600px !important;
-  }
-} */
-
-/* @media (min-width: 1920px) {
-  .container {
-    max-width: 1800px !important;
-  }
-}
-
-@media (min-width: 2120px) {
-  .container {
-    max-width: 2000px !important;
-  }
-}
-
-@media (min-width: 2320px) {
-  .container {
-    max-width: 2200px !important;
-  }
-} */
-
 form.container {
   max-width: 500px;
+}
+
+div.container {
+  max-width: 700px;
 }
 
 p,
 h5 {
   margin: 0 !important;
+}
+
+.link:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.search-bar {
+  max-width: 400px;
 }

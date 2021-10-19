@@ -1,9 +1,9 @@
-import Comment from '../models/comment.js';
+import Post from '../models/post.js';
 
 export const blogGetController = async (req, res) => {
   try {
-    const comments = await Comment.find().sort({ date: -1 }).limit(20);
-    res.status(200).json(comments);
+    const posts = await Post.find().sort({ date: -1 }).limit(6);
+    res.status(200).json(posts);
   } catch (err) {
     console.log(err);
     res.status(400).json('Bad Request');
