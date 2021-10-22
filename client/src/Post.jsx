@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import fetchData from './utils/api';
+import fetchData from './utils/fetchData';
 
 const Post = ({ user, setUser }) => {
   const [title, setTitle] = useState('');
+  const [introduction, setIntroduction] = useState('');
   const [image, setImage] = useState('');
   const [text, setText] = useState('');
   const [message, setMessage] = useState('');
@@ -15,22 +16,25 @@ const Post = ({ user, setUser }) => {
     reader.readAsDataURL(e.target.files[0]);
   };
 
-  const post = () => {
+  const post = (e) => {
+    e.preventDefault();
     fetchData('post', 'POST', {
       title,
       image,
+      introduction,
       text,
+      date: new Date(),
     })
       .then((res) => res.json())
       .then((res) => setMessage(res))
-      .catch((err) => console.log(err));
+      .catch(() => {});
   };
 
   return (
     <>
-      <Header user={user} setUser={setUser}></Header>
+      <Header user={user} setUser={setUser} />
       <main className="py-5">
-        {user ? (
+        {user?.role === 'admin' ? (
           <form className="p-3 border rounded text-center container bg-white">
             {message.length > 0 && (
               <div className="alert alert-primary">{message}</div>
@@ -55,6 +59,16 @@ const Post = ({ user, setUser }) => {
               />
             </div>
             <div className="mb-3">
+              <input
+                placeholder="Introduction"
+                type="text"
+                className="form-control"
+                autoComplete="on"
+                onChange={(e) => setIntroduction(e.target.value)}
+                required
+              />
+            </div>
+            <div className="mb-3">
               <textarea
                 onChange={(e) => setText(e.target.value)}
                 placeholder="Text"
@@ -63,7 +77,7 @@ const Post = ({ user, setUser }) => {
               />
             </div>
             <button
-              onClick={() => post()}
+              onClick={(e) => post(e)}
               type="submit"
               className="btn btn-dark px-3"
             >
@@ -74,7 +88,7 @@ const Post = ({ user, setUser }) => {
           <h1 className="text-center">Unauthorized Access</h1>
         )}
       </main>
-      <Footer></Footer>
+      <Footer />
     </>
   );
 };

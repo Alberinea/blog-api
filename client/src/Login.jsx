@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import jwt_decode from 'jwt-decode';
+import decode from 'jwt-decode';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import fetchData from './utils/api';
+import fetchData from './utils/fetchData';
 
 const Login = ({ user, setUser }) => {
   const [error, setError] = useState('');
@@ -24,7 +24,7 @@ const Login = ({ user, setUser }) => {
     }
 
     if (result.success) {
-      const decoded = jwt_decode(result.access_token);
+      const decoded = decode(result.access_token);
       setUser(decoded);
 
       history.push('/');
@@ -33,7 +33,7 @@ const Login = ({ user, setUser }) => {
 
   return (
     <>
-      <Header user={user} setUser={setUser}></Header>
+      <Header user={user} setUser={setUser} />
       <main className="pt-5">
         {!user ? (
           <form className="container p-3 border rounded text-center bg-white">
@@ -71,7 +71,7 @@ const Login = ({ user, setUser }) => {
           <h1 className="text-center">You have already logged in</h1>
         )}
       </main>
-      <Footer></Footer>
+      <Footer />
     </>
   );
 };

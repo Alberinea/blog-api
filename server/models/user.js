@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const Schema = mongoose.Schema;
+const {Schema} = mongoose;
 
 const userSchema = new Schema({
   username: {
@@ -15,6 +15,7 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
+  // eslint-disable-next-line camelcase
   refresh_token: {
     type: String,
     required: true,
@@ -24,4 +25,5 @@ const userSchema = new Schema({
 const User = mongoose.model('users', userSchema);
 
 export default User;
+
  

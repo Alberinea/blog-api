@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import User from '../models/user.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
@@ -29,7 +30,7 @@ export const loginPostController = async (req, res) => {
           }
         );
         const refresh_token = jwt.sign(
-          { username: user.username, role: user.role },
+          { id: user._id },
           process.env.REFRESH_TOKEN_SECRET,
           {
             expiresIn: '1w',

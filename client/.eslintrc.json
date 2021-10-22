@@ -1,0 +1,59 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react/jsx-runtime"
+  ],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "plugins": ["react"],
+  "rules": {
+    "react/prop-types": 0,
+    "react/self-closing-comp": 1,
+    "react/button-has-type": 1,
+    "react/boolean-prop-naming":1,
+    "no-var": "warn",
+    "prefer-const": "warn",
+    "object-shorthand": "warn",
+    "prefer-object-spread": "warn",
+    "no-array-constructor": "warn",
+    "prefer-destructuring": "warn",
+    "no-useless-escape": "warn",
+    "no-loop-func": "error",
+    "prefer-rest-params": "warn",
+    "default-param-last": "warn",
+    "no-param-reassign": "error",
+    "arrow-parens": "warn",
+    "no-restricted-properties": "error",
+    "operator-linebreak": "warn",
+    "no-nested-ternary": "warn",
+    "no-unneeded-ternary": "warn",
+    "no-mixed-operators": "warn",
+    "nonblock-statement-body-position": "warn",
+    "brace-style": "warn",
+    "no-else-return": "warn",
+    "space-before-blocks": "warn",
+    "keyword-spacing": "warn",
+    "space-infix-ops": "warn",
+    "eol-last": "warn",
+    "no-multiple-empty-lines": "warn",
+    "space-in-parens": "warn",
+    "array-bracket-spacing": "warn",
+    "comma-spacing": "warn",
+    "computed-property-spacing": "warn",
+    "func-call-spacing": "warn",
+    "key-spacing": "warn",
+    "no-trailing-spaces": "off",
+    "camelcase": "warn",
+    "no-restricted-globals": "warn"
+  }
+}

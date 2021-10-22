@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import User from '../models/user.js';
 import jwt from 'jsonwebtoken';
 
@@ -13,8 +14,8 @@ export const logoutDeleteController = async (req, res) => {
         if (err) return res.sendStatus(403);
 
         try {
-          await User.findOneAndUpdate(
-            { username: user.username },
+          await User.findByIdAndUpdate(
+            user._id,
             { refresh_token: '' }
           );
         } catch (err) {

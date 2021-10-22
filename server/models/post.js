@@ -1,11 +1,13 @@
 import mongoose from 'mongoose';
+import uniqueValidator from 'mongoose-unique-validator';
 
-const Schema = mongoose.Schema;
+const { Schema } = mongoose;
 
 const postSchema = new Schema({
   title: {
     type: String,
     required: true,
+    unique: true,
   },
   image: {
     type: String,
@@ -27,6 +29,8 @@ const postSchema = new Schema({
     type: String,
   },
 });
+
+postSchema.plugin(uniqueValidator);
 
 const Post = mongoose.model('posts', postSchema);
 

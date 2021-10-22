@@ -90,8 +90,12 @@ form.container {
   max-width: 500px;
 }
 
-div.container {
+div.container, section.container {
   max-width: 700px;
+}
+
+span.bg-success {
+  font-size: 9px !important;
 }
 
 p,

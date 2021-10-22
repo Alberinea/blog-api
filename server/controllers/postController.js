@@ -1,15 +1,9 @@
-import jwt from 'jsonwebtoken';
 import ImageKit from 'imagekit'
 import Post from '../models/post.js';
 
 export const postPostController = async (req, res) => {
-  const { refresh_token } = req.cookies;
-  jwt.verify(refresh_token, process.env.REFRESH_TOKEN_SECRET, (err) => {
-    if (err) return res.sendStatus(403);
-  });
-
   try {
-    const { title, image, text } = req.body;
+    const { title, image, introduction, text, date } = req.body;
 
     const imagekit = new ImageKit({
       publicKey: 'public_txng6l4dKqtvsRfoqDBKhA+jrck=',
@@ -26,7 +20,9 @@ export const postPostController = async (req, res) => {
     const newPost = new Post({
       title,
       image: newImage.url,
+      introduction,
       text,
+      date,
     });
     await newPost.save();
     res.status(201).json('Posted!');
@@ -34,4 +30,5 @@ export const postPostController = async (req, res) => {
     console.log(err);
     res.status(400).json('Bad request');
   }
-};
+}
+

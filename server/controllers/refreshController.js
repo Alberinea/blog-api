@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import jwt from 'jsonwebtoken';
 import User from '../models/user.js';
 
@@ -12,8 +13,10 @@ export const refreshPostController = async (req, res) => {
     jwt.verify(
       refresh_token,
       process.env.REFRESH_TOKEN_SECRET,
-      async (err, user) => {
+      async (err, token) => {
         if (err) return res.sendStatus(403);
+        
+        const user = await User.findById(token.id)
 
         const access_token = jwt.sign(
           { username: user.username, role: user.role },
@@ -24,7 +27,7 @@ export const refreshPostController = async (req, res) => {
         );
 
         refresh_token = jwt.sign(
-          { username: user.username, role: user.role },
+          { id: user._id },
           process.env.REFRESH_TOKEN_SECRET,
           {
             expiresIn: '1w',
