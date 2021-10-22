@@ -1,7 +1,6 @@
 const fetchData = async (endpoint, method, body = null, signal = null) => {
   try {
-    const server =
-      'http://localhost:5000' || 'https://blog-api-1337.herokuapp.com';
+    const server = 'https://blog-api-1337.herokuapp.com';
     const url = `${server}/api/`;
 
     const data = await fetch(url + endpoint, {
