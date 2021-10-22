@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { HashRouter, Switch, Route } from 'react-router-dom';
 import decode from 'jwt-decode';
 import App from './App';
 import Login from './Login';
@@ -32,7 +32,7 @@ const Routes = () => {
 
   return (
     // eslint-disable-next-line no-undef
-    <BrowserRouter basename={process.env.PUBLIC_URL}>
+    <HashRouter basename={process.env.PUBLIC_URL}>
       {loading ? null : (
         <Switch>
           <Route exact path="/">
@@ -52,7 +52,7 @@ const Routes = () => {
           </Route>
         </Switch>
       )}
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 
