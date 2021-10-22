@@ -17,7 +17,7 @@ const port = process.env.PORT || 5000;
 dotenv.config();
 
 const client = 
-  process.env.CLIENT || 'https://alberinea.github.io/blog-api/'; 
+  process.env.CLIENT || 'https://alberinea.github.io/blog-api'; 
 
 mongoose
   .connect(
