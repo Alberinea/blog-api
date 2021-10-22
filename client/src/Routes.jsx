@@ -31,7 +31,8 @@ const Routes = () => {
   }, [user]);
 
   return (
-    <BrowserRouter>
+    // eslint-disable-next-line no-undef
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       {loading ? null : (
         <Switch>
           <Route exact path="/">
