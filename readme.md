@@ -1,6 +1,6 @@
 # [TheOdinProject](https://www.theodinproject.com/)
 
-Project: Blog API
+## Project: Blog API
 
 ![Screenshot](Blog.png)
 
